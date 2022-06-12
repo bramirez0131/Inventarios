@@ -3,7 +3,7 @@ const Marca = require("../modelos/Marca")
 const { validarMarca } = require("../helpers/validar-marca");
 
 router.post("/", async function(req, res) {
-    console.log(`Request Params: ${req.body}`);
+    console.log(`Request Params: ${JSON.stringify(req.body)}`);
     try {
         const validaciones = validarMarca(req);
 
@@ -53,7 +53,7 @@ router.put("/:marcaId", async function(req, res) {
         marca.fechaActualizacion = new Date();
     
         marca = await marca.save();
-        res.send(tipoEquipo);     
+        res.send(marca);     
     } catch (error) {
         console.log(error);
         res.status(500).send("Ocurrio un error al consultar Marca");

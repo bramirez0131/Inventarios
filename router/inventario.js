@@ -29,6 +29,33 @@ router.get("/", async function(req, res) {
     }
 });
 
+router.get("/:inventarioId", async function(req, res) {
+    try {
+        const inventario = await Inventario.findById(req.params.inventarioId).populate([
+            {
+                path: "usuario",
+                select: "nombre email estado"
+            },
+            {
+                path: "marca",
+                select: "nombre estado"
+            },
+            {
+                path: "tipoEquipo",
+                select: "nombre estado"
+            },
+            {
+                path: "estadoEquipo",
+                select: "nombre estado"
+            }
+        ]);
+        res.send(inventario);
+    } catch (error) {
+        console.log(error);
+        res.status(400).send("Ocurrio un error al consultar inventarios");
+    }
+});
+
 router.post("/",async function(req, res) {
     try {
 

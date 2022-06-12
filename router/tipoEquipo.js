@@ -3,7 +3,7 @@ const TipoEquipo = require("../modelos/TipoEquipo")
 const { validarTipoEquipo } = require("../helpers/validar-tipoEquipo");
 
 router.post("/", async function(req, res) {
-    console.log(`Request Params: ${req.body}`);
+    console.log(`Request Params: ${JSON.stringify(req.body)}`);
     try {
         const validaciones = validarTipoEquipo(req);
 

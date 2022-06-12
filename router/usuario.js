@@ -3,7 +3,7 @@ const Usuario = require("../modelos/Usuario");
 const { validarUsuario } = require("../helpers/validar-usuario");
 
 router.post("/", async function(req, res) {
-    console.log(`Request Params: ${req.body}`);
+    console.log(`Request Params: ${JSON.stringify(req.body)}`);
     try {
         const validaciones = validarUsuario(req);
 
